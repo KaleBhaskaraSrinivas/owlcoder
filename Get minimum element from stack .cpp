@@ -32,3 +32,59 @@ class Solution{
            }
        }
 };
+
+
+
+
+
+class Solution{
+    int minEle;
+    stack<int> s;
+    public:
+       /*returns min element from stack*/
+       int getMin(){
+           if(s.empty())
+           {
+           return -1;
+               
+           }
+           else
+           {
+           return minEle;
+           }
+       }
+       /*returns poped element from stack*/
+       int pop(){
+             int x;
+          if (s.empty())
+             return -1;
+          int result = s.top();
+          if (result < minEle) 
+          {
+              result = minEle;
+              minEle = 2*minEle - s.top();
+          }
+          s.pop();
+          return result;
+       }
+       
+       /*push element x into the stack*/
+       void push(int x){
+            if (s.empty())
+            {
+              minEle = x;
+              s.push(x);
+            }
+          else
+          {
+             if (x > minEle) 
+             {
+                  s.push (x);
+             } else 
+             {
+                  s.push (2*x - minEle);
+                  minEle = x;
+             }
+          }
+       }
+};
